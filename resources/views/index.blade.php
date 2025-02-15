@@ -24,19 +24,19 @@
     <main>
         <section class="section white">
             <div class="card">
-                <img src="image1.jpeg" alt="Görsel 1">
+                <img src="{{asset("storage/image1.jpeg" )}}" alt="Görsel 1">
                 <button onclick="window.location.href='merhumlarimiz'">Merhumlarımız</button>
             </div>
         </section>
         <section class="section white">
             <div class="card">
-                <img src="image1.jpeg" alt="Görsel 2">
+                <img src="{{asset("storage/image1.jpeg" )}}" alt="Görsel 2">
             </div>
         </section>
         <section class="section white">
             <div class="card">
-                <video controls>
-                    <source src="video.mp4" type="video/mp4">
+                <video controls preload="metadata">
+                    <source src="{{asset("storage/video.mp4" )}}" type="video/mp4">
                     Tarayıcınız video etiketini desteklemiyor.
                 </video>
             </div>

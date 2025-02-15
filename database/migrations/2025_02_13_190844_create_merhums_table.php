@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('merhums', function (Blueprint $table) {
             $table->id();
             $table->string('ad_soyad');
-            $table->date('dogum_tarihi')->nullable();
-            $table->date('olum_tarihi')->nullable();
+            $table->string('dogum_tarihi')->nullable();
+            $table->string('olum_tarihi')->nullable();
             $table->string('merhum_gorsel_yolu')->nullable();
             $table->string('mezarlik_gorsel_yolu')->nullable();
             $table->timestamps();

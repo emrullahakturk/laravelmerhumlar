@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Merhumlarımız</title>
-    <link rel="stylesheet" href="css/merhumlar.css">
+    <link rel="stylesheet" href="{{ asset('css/merhumlar.css') }}">
 </head>
 <body>
     <header>
@@ -28,12 +28,21 @@
                     <a href="{{ route('merhum-detay', $merhum->id) }}" class="merhum-card">
                         <img src="{{ asset('storage/' . ($merhum->merhum_gorsel_yolu ?? 'default.png')) }}" alt="Merhum Fotoğrafı">
                         <h3>{{ $merhum->ad_soyad }}</h3>
-                        <p><strong>Doğum:</strong> {{ $merhum->dogum_tarihi }}</p>
-                        <p><strong>Ölüm:</strong> {{ $merhum->olum_tarihi }}</p>
+                        <p><strong>Vefat Tarihi:</strong> 
+                            {{ implode('-', array_reverse(explode('-', $merhum->olum_tarihi))) }}
+                        </p>
                     </a>
                 @endforeach
             @endif
         </section>
+
+        <!-- ✅ Laravel Pagination Linkleri -->
+<div class="pagination-container">
+    <ul class="pagination">
+       <li>  {{ $merhumlar->links() }} </li>
+    </ul>
+</div>
+
     </main>
 
     <footer>

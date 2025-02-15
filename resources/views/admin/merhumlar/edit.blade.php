@@ -26,12 +26,12 @@
             </div>
             <div class="mb-3">
                 <label>Merhum Görseli Yükle</label>
-                <input type="file" name="gorsel" class="form-control">
+                <input type="file" name="merhum_gorsel_yolu" class="form-control">
             </div>
 
             <div class="mb-3">
                 <label>Merhum Kabir Görseli Yükle</label>
-                <input type="file" name="gorsel" class="form-control">
+                <input type="file" name="mezarlik_gorsel_yolu" class="form-control">
             </div>
             <button type="submit" class="btn btn-primary">Güncelle</button>
         </form>

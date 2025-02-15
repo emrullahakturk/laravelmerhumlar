@@ -152,7 +152,7 @@ h1 {
     max-width: 1200px;
 }
 
-/* 🔹 Kart Tasarımı (Biraz Daha Büyük) */
+/* 🔹 Kart Tasarımı */
 .merhum-card {
     background: #fff;
     box-shadow: 0 6px 12px rgba(0,0,0,0.2);
@@ -162,22 +162,22 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 420px; /* Kartların maksimum genişliği artırıldı */
-    min-width: 320px; /* Minimum genişlik de artırıldı */
-    text-decoration: none; /* Linkin altı çizili olmaması için */
-    color: inherit; /* Link rengi değiştirilmedi, tasarımla uyumlu */
-    transition: transform 0.2s ease-in-out; /* Hover efekti */
+    max-width: 420px; 
+    min-width: 320px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease-in-out;
 }
 
 .merhum-card:hover {
-    transform: scale(1.03); /* Üzerine gelindiğinde hafif büyüme efekti */
+    transform: scale(1.03);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-/* 🔹 Görsellerin Daha Büyük ve Orantılı Görünmesi */
+/* 🔹 Görseller */
 .merhum-card img {
     width: 100%;
-    height: 220px; /* Görseller büyütüldü */
+    height: 220px;
     object-fit: contain;
     border-radius: 12px;
     background-color: #f3f3f3;
@@ -185,59 +185,134 @@ h1 {
 
 /* 🔹 Kart İçeriği */
 .merhum-card h3 {
-    font-size: 1.6rem; /* Başlıklar biraz daha büyütüldü */
+    font-size: 1.6rem;
     color: #8B4513;
     margin-top: 14px;
 }
 
 .merhum-card p {
-    font-size: 1.3rem; /* Metin boyutu artırıldı */
+    font-size: 1.3rem;
     color: #333;
 }
 
-
 /* 🔹 Responsive Kart Yapısı */
-
 @media (min-width: 1400px) {
     .merhum-card {
-        width: calc(25% - 20px); /* Çok büyük ekranlarda 4'lü sıralama */
-        max-width: 420px; /* Kartların maksimum genişliği artırıldı */
+        width: calc(25% - 20px);
+        max-width: 420px;
     }
 }
-
 @media (min-width: 1200px) and (max-width: 1399px) {
     .merhum-card {
-        width: calc(33.33% - 25px); /* Büyük ekranlarda 3'lü sıralama */
+        width: calc(33.33% - 25px);
         max-width: 420px;
     }
 }
-
 @media (min-width: 1024px) and (max-width: 1199px) {
     .merhum-card {
-        width: calc(50% - 25px); /* Orta ekranlarda 2'li sıralama */
+        width: calc(50% - 25px);
         max-width: 420px;
     }
 }
-
 @media (min-width: 768px) and (max-width: 1023px) {
     .merhum-card {
-        width: calc(50% - 15px); /* Küçük ekranlarda yine 2'li sıralama */
+        width: calc(50% - 15px);
         max-width: 400px;
     }
 }
-
 @media (max-width: 767px) {
     .merhum-container {
         flex-direction: column;
         align-items: center;
     }
-
     .merhum-card {
-        width: 95%; /* Mobilde tam genişlikte ortalanır */
+        width: 95%;
         max-width: 380px;
     }
 }
 
+/* ✅ Pagination - Sayfa Numaralandırması */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+}
+
+.pagination {
+    display: flex;
+    flex-wrap: wrap; /* Küçük ekranlarda düzgün sarılmasını sağlar */
+    list-style: none;
+    gap: 5px;
+    padding: 0;
+    justify-content: center;
+    max-width: 100%;
+}
+
+/* ✅ Sayfa Numaraları */
+.pagination a,
+.pagination span {
+    display: inline-block;
+    padding: 8px 12px;
+    font-size: 14px;
+    text-decoration: none;
+    background-color: #8B4513;
+    color: white;
+    border-radius: 4px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+/* ✅ Hover Efekti */
+.pagination a:hover {
+    background-color: #A0522D;
+    transform: scale(1.05);
+}
+
+/* ✅ Aktif Sayfa */
+.pagination .active span {
+    background-color: #A0522D;
+    font-weight: bold;
+}
+
+/* ✅ 768px Altı: Küçük Ekranlar İçin Optimize */
+@media (max-width: 768px) {
+    .pagination-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .pagination {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: 100%;
+    }
+    .pagination a,
+    .pagination span {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+}
+
+/* ✅ 390px Altı: İlk 5 Buton Üstte, Kalanlar Altta */
+@media (max-width: 390px) {
+    .pagination {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: 200px; /* Butonları daralt */
+    }
+
+    .pagination a,
+    .pagination span {
+        padding: 6px 8px;
+        font-size: 10px;
+    }
+
+    .pagination a:nth-child(-n+5),
+    .pagination span:nth-child(-n+5) {
+        order: -1; /* İlk 5 butonu üstte tut */
+    }
+}
 
 
 /* Footer */

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Merhum;
+use Illuminate\Support\Facades\Storage;
+
 
 class AdminMerhumController extends Controller
 {
@@ -62,32 +64,38 @@ class AdminMerhumController extends Controller
 
     /**
      * Merhum güncelleme işlemi
-     */
-    public function update(Request $request, $id)
-    {
-        $merhum = Merhum::findOrFail($id);
+     */public function update(Request $request, $id)
+{
+    $merhum = Merhum::findOrFail($id);
 
-        $request->validate([
-            'ad_soyad' => 'required|string|max:255',
-            'dogum_tarihi' => 'required|date',
-            'olum_tarihi' => 'required|date',
-            'merhum_gorsel_yolu' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'mezarlik_gorsel_yolu' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
-        ]);
+    $request->validate([
+        'ad_soyad' => 'required|string|max:255',
+        'dogum_tarihi' => 'required|date',
+        'olum_tarihi' => 'required|date',
+        'merhum_gorsel_yolu' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'mezarlik_gorsel_yolu' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+    ]);
 
-        $merhum->update($request->except(['merhum_gorsel_yolu', 'mezarlik_gorsel_yolu']));
-
-        if ($request->hasFile('merhum_gorsel_yolu')) {
-            $merhum->merhum_gorsel_yolu = $request->file('merhum_gorsel_yolu')->store('merhumlar', 'public');
+    // **1️⃣ Eski Görselleri Sil ve Yeni Görselleri Kaydet**
+    if ($request->hasFile('merhum_gorsel_yolu')) {
+        if ($merhum->merhum_gorsel_yolu && Storage::disk('public')->exists($merhum->merhum_gorsel_yolu)) {
+            Storage::disk('public')->delete($merhum->merhum_gorsel_yolu); // **Eski resmi sil**
         }
-
-        if ($request->hasFile('mezarlik_gorsel_yolu')) {
-            $merhum->mezarlik_gorsel_yolu = $request->file('mezarlik_gorsel_yolu')->store('mezarliklar', 'public');
-        }
-
-        $merhum->save();
-        return redirect()->route('admin.merhumlar.index')->with('success', 'Merhum başarıyla güncellendi.');
+        $merhum->merhum_gorsel_yolu = $request->file('merhum_gorsel_yolu')->store('merhumlar', 'public');
     }
+
+    if ($request->hasFile('mezarlik_gorsel_yolu')) {
+        if ($merhum->mezarlik_gorsel_yolu && Storage::disk('public')->exists($merhum->mezarlik_gorsel_yolu)) {
+            Storage::disk('public')->delete($merhum->mezarlik_gorsel_yolu); // **Eski mezar taşını sil**
+        }
+        $merhum->mezarlik_gorsel_yolu = $request->file('mezarlik_gorsel_yolu')->store('mezarliklar', 'public');
+    }
+
+    // **2️⃣ Diğer Alanları Güncelle**
+    $merhum->update($request->except(['merhum_gorsel_yolu', 'mezarlik_gorsel_yolu']));
+    
+    return redirect()->route('admin.merhumlar.index')->with('success', 'Merhum başarıyla güncellendi.');
+}
 
     /**
      * Merhum silme işlemi
@@ -95,6 +103,16 @@ class AdminMerhumController extends Controller
     public function destroy($id)
     {
         $merhum = Merhum::findOrFail($id);
+
+        // **1️⃣ Merhum Görselini Sil**
+    if ($merhum->merhum_gorsel_yolu && Storage::disk('public')->exists($merhum->merhum_gorsel_yolu)) {
+        Storage::disk('public')->delete($merhum->merhum_gorsel_yolu);
+    }
+
+    // **2️⃣ Mezar Taşı Görselini Sil**
+    if ($merhum->mezarlik_gorsel_yolu && Storage::disk('public')->exists($merhum->mezarlik_gorsel_yolu)) {
+        Storage::disk('public')->delete($merhum->mezarlik_gorsel_yolu);
+    }
         $merhum->delete();
 
         return redirect()->route('admin.merhumlar.index')->with('success', 'Merhum başarıyla silindi.');

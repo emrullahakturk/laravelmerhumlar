@@ -346,36 +346,65 @@
     <!-- 🔹 Merhum Bilgileri (Kart İçinde) -->
     <section class="merhum-bilgiler-card">
         <div class="merhum-bilgiler">
-            <h2>{{ $merhum->ad_soyad }}</h2>
-            <p><strong>Doğum Tarihi:</strong> {{ $merhum->dogum_tarihi }}</p>
-            <p><strong>Ölüm Tarihi:</strong> {{ $merhum->olum_tarihi }}</p>
-            <p><strong>Hakkında:</strong> Merhum hakkında kısa bir bilgi veya açıklama eklenebilir.</p>
+            <h2>Merhum {{ $merhum->ad_soyad }}</h2>
+            <p><strong>Doğum Tarihi:</strong> 
+                {{ implode('-', array_reverse(explode('-', $merhum->dogum_tarihi))) }}
+            </p>
+            
+            <p><strong>Ölüm Tarihi:</strong> 
+                {{ implode('-', array_reverse(explode('-', $merhum->olum_tarihi))) }}
+            </p>
+            
+          <!--  <p><strong>Hakkında:</strong> Merhum hakkında kısa bir bilgi veya açıklama eklenebilir.</p> -->
         </div>
     </section>
 
     <!-- Ses Dosyaları -->
     <section class="ses-dosyalar">
+
         <div class="ses-kutu">
-            <span>Fatiha Suresi</span>
+            <span style="margin-bottom: 10px">Yasin Suresi</span>
             <audio controls>
-                <source src="{{ asset('audio/fatiha.mp3') }}" type="audio/mpeg">
+                <source src="{{ asset('storage/sesler/yasin_suresi.mp3') }}" type="audio/mpeg">
                 Tarayıcınız ses dosyalarını desteklemiyor.
             </audio>
         </div>
         <div class="ses-kutu">
-            <span>İhlâs Suresi</span>
+            <span style="margin-bottom: 10px">Fatiha Suresi</span>
             <audio controls>
-                <source src="{{ asset('audio/ihlas.mp3') }}" type="audio/mpeg">
+                <source src="{{ asset('storage/sesler/fatiha_suresi.mp3') }}" type="audio/mpeg">
                 Tarayıcınız ses dosyalarını desteklemiyor.
             </audio>
         </div>
         <div class="ses-kutu">
-            <span>Yasin Suresi</span>
+            <span style="margin-bottom: 10px">Amenarrasulü Suresi</span>
             <audio controls>
-                <source src="{{ asset('audio/yasin.mp3') }}" type="audio/mpeg">
+                <source src="{{ asset('storage/sesler/amenerrasulü.mp3') }}" type="audio/mpeg">
                 Tarayıcınız ses dosyalarını desteklemiyor.
             </audio>
         </div>
+        <div class="ses-kutu">
+            <span style="margin-bottom: 10px">Mülk Suresi</span>
+            <audio controls>
+                <source src="{{ asset('storage/sesler/mulk_suresi.mp3') }}" type="audio/mpeg">
+                Tarayıcınız ses dosyalarını desteklemiyor.
+            </audio>
+        </div>
+        <div class="ses-kutu">
+            <span style="margin-bottom: 10px">Rahman Suresi</span>
+            <audio controls>
+                <source src="{{ asset('storage/sesler/rahman_suresi.mp3') }}" type="audio/mpeg">
+                Tarayıcınız ses dosyalarını desteklemiyor.
+            </audio>
+        </div>
+        <div class="ses-kutu">
+            <span style="margin-bottom: 10px" >İhlâs Suresi</span>
+            <audio controls>
+                <source src="{{ asset('storage/sesler/ihlas_suresi.mp3') }}" type="audio/mpeg">
+                Tarayıcınız ses dosyalarını desteklemiyor.
+            </audio>
+        </div>
+        
     </section>
 </main>
 
@@ -386,6 +415,24 @@
 
 <!-- Menü Aç/Kapat -->
 <script src="{{ asset('js/menu.js') }}"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const audioElements = document.querySelectorAll("audio");
+
+        audioElements.forEach(audio => {
+            audio.addEventListener("play", function () {
+                audioElements.forEach(otherAudio => {
+                    if (otherAudio !== audio) {
+                        otherAudio.pause();
+                       // otherAudio.currentTime = 0; // Başlangıca al (isteğe bağlı)
+                    }
+                });
+            });
+        });
+    });
+</script>
+
 
 
 </body>
