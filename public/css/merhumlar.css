@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Delius&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Delius', sans-serif;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Header */
+header {
+    padding: 20px;
+    background-color: #fff;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+h1 {
+    font-size: 1.8rem;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    color: #8B4513;
+    flex-grow: 1;
+    text-align: center;
+    font-family: 'Delius', sans-serif;
+}
+
+/* Responsive başlık boyutları */
+@media (min-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+}
+@media (min-width: 768px) {
+    h1 {
+        font-size: 2.3rem;
+    }
+}
+@media (min-width: 1024px) {
+    h1 {
+        font-size: 2.8rem;
+    }
+}
+
+/* Menü Butonu */
+.menu-button {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #8B4513;
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Menü Paneli */
+.menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 250px;
+    height: 100%;
+    background: white;
+    box-shadow: -4px 0 8px rgba(0,0,0,0.2);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: right 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+.menu.open {
+    right: 0;
+}
+
+/* Kapatma Butonu */
+.close-menu {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #8B4513;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Menü Öğesi */
+.menu a {
+    display: block;
+    text-decoration: none;
+    color: #8B4513;
+    padding: 15px 20px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    width: 100%;
+    text-align: left;
+    margin-top: 50px;
+}
+
+.menu a:hover {
+    background: #8B4513;
+    color: white;
+}
+
+/* Menü Dışına Tıklanınca Kapanma */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 999;
+}
+
+.menu-overlay.open {
+    display: block;
+}
+
+/* 🔹 Merhum Kartlarını Esnek Hale Getiren Flexbox Layout */
+.merhum-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Kartların ortalanmasını sağlar */
+    align-items: center;
+    gap: 30px;
+    padding: 30px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* 🔹 Kart Tasarımı (Biraz Daha Büyük) */
+.merhum-card {
+    background: #fff;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    border-radius: 14px;
+    padding: 25px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 420px; /* Kartların maksimum genişliği artırıldı */
+    min-width: 320px; /* Minimum genişlik de artırıldı */
+    text-decoration: none; /* Linkin altı çizili olmaması için */
+    color: inherit; /* Link rengi değiştirilmedi, tasarımla uyumlu */
+    transition: transform 0.2s ease-in-out; /* Hover efekti */
+}
+
+.merhum-card:hover {
+    transform: scale(1.03); /* Üzerine gelindiğinde hafif büyüme efekti */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* 🔹 Görsellerin Daha Büyük ve Orantılı Görünmesi */
+.merhum-card img {
+    width: 100%;
+    height: 220px; /* Görseller büyütüldü */
+    object-fit: contain;
+    border-radius: 12px;
+    background-color: #f3f3f3;
+}
+
+/* 🔹 Kart İçeriği */
+.merhum-card h3 {
+    font-size: 1.6rem; /* Başlıklar biraz daha büyütüldü */
+    color: #8B4513;
+    margin-top: 14px;
+}
+
+.merhum-card p {
+    font-size: 1.3rem; /* Metin boyutu artırıldı */
+    color: #333;
+}
+
+
+/* 🔹 Responsive Kart Yapısı */
+
+@media (min-width: 1400px) {
+    .merhum-card {
+        width: calc(25% - 20px); /* Çok büyük ekranlarda 4'lü sıralama */
+        max-width: 420px; /* Kartların maksimum genişliği artırıldı */
+    }
+}
+
+@media (min-width: 1200px) and (max-width: 1399px) {
+    .merhum-card {
+        width: calc(33.33% - 25px); /* Büyük ekranlarda 3'lü sıralama */
+        max-width: 420px;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1199px) {
+    .merhum-card {
+        width: calc(50% - 25px); /* Orta ekranlarda 2'li sıralama */
+        max-width: 420px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .merhum-card {
+        width: calc(50% - 15px); /* Küçük ekranlarda yine 2'li sıralama */
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 767px) {
+    .merhum-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .merhum-card {
+        width: 95%; /* Mobilde tam genişlikte ortalanır */
+        max-width: 380px;
+    }
+}
+
+
+
+/* Footer */
+footer {
+    width: 100%;
+    background-color: #8B4513;
+    color: white;
+    text-align: center;
+    padding: 15px 20px;
+    font-size: 0.9rem;
+    position: relative;
+    bottom: 0;
+    left: 0;
+}
+
+@media (min-width: 768px) {
+    footer {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    footer {
+        font-size: 1.2rem;
+    }
+}
