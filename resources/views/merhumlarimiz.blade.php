@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <h1>Merhumlarımız</h1>
+        <h1><a href="/merhumlarimiz">Merhumlarımız</a></h1>
         <button class="menu-button" onclick="toggleMenu()">☰</button>
     </header>
 

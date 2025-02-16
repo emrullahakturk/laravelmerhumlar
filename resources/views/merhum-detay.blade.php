@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Merhum Detay</title>
+    <title>Merhum</title>
     <link rel="stylesheet" href="{{asset('css/detay.css')}}">
 
     <style> @import url('https://fonts.googleapis.com/css2?family=Delius&display=swap');
@@ -315,7 +315,7 @@
 
    <!-- Header -->
    <header>
-    <h1>Merhum</h1>
+    <h1><a href="#" onclick="location.reload(); return false;">Merhum</a></h1>
     <button class="menu-button" onclick="toggleMenu()">☰</button>
 </header>
 

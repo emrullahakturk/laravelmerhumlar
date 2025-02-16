@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <h1>Kızılören Sıla-i Rahim</h1>
+       <h1><a href="/" class="">Kızılören Sıla-i Rahim</a> </h1>
         <button class="menu-button" onclick="toggleMenu()">☰</button>
     </header>
 
@@ -24,13 +24,13 @@
     <main>
         <section class="section white">
             <div class="card">
-                <img src="{{asset("storage/image1.jpeg" )}}" alt="Görsel 1">
+                <img src="{{asset("storage/kiziloren_mezarligi.jpg" )}}" alt="Görsel 1">
                 <button onclick="window.location.href='merhumlarimiz'">Merhumlarımız</button>
             </div>
         </section>
         <section class="section white">
             <div class="card">
-                <img src="{{asset("storage/image1.jpeg" )}}" alt="Görsel 2">
+                <img src="{{asset("storage/kiziloren_koyu.jpg" )}}" alt="Görsel 2">
             </div>
         </section>
         <section class="section white">
