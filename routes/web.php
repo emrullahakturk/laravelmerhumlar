@@ -44,5 +44,12 @@ Route::get('/register', function () {
     return view('auth.register');
 })->middleware('guest')->name('register');
 
+
+
+Route::get('/dashboard', [AdminMerhumController::class, 'index'])->middleware('auth')->name('admin.merhumlar.index');
+
+Route::post('/dashboard', [AdminMerhumController::class, 'index'])->middleware('auth')->name('admin.merhumlar.index');
+
+
 // **Laravel Breeze Auth Rotaları**
 require __DIR__.'/auth.php';
