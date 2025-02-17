@@ -18,7 +18,7 @@
             </div>
             <div class="mb-3">
                 <label>Doğum Tarihi</label>
-                <input type="date" name="dogum_tarihi" class="form-control" value="{{ $merhum->dogum_tarihi }}" required>
+                <input type="date" name="dogum_tarihi" class="form-control" value="{{ $merhum->dogum_tarihi }}">
             </div>
             <div class="mb-3">
                 <label>Ölüm Tarihi</label>

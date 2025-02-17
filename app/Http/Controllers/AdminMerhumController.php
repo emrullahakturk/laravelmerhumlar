@@ -33,7 +33,7 @@ class AdminMerhumController extends Controller
     {
         $request->validate([
             'ad_soyad' => 'required|string|max:255',
-            'dogum_tarihi' => 'required|date',
+            'dogum_tarihi' => 'nullable|string|max:255',
             'olum_tarihi' => 'required|date',
             'merhum_gorsel_yolu' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'mezarlik_gorsel_yolu' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
@@ -70,8 +70,8 @@ class AdminMerhumController extends Controller
 
     $request->validate([
         'ad_soyad' => 'required|string|max:255',
-        'dogum_tarihi' => 'required|date',
-        'olum_tarihi' => 'required|date',
+        'dogum_tarihi' => 'nullable|string|max:255',
+        'olum_tarihi' => 'required|string|max:255',
         'merhum_gorsel_yolu' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         'mezarlik_gorsel_yolu' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
     ]);

@@ -17,7 +17,7 @@
             </div>
             <div class="mb-3">
                 <label>Doğum Tarihi</label>
-                <input type="date" name="dogum_tarihi" class="form-control" required>
+                <input type="date" name="dogum_tarihi" class="form-control">
             </div>
             <div class="mb-3">
                 <label>Ölüm Tarihi</label>
@@ -25,7 +25,7 @@
             </div>
             <div class="mb-3">
                 <label>Merhum Görseli</label>
-                <input type="file" name="merhum_gorsel_yolu" class="form-control" required>
+                <input type="file" name="merhum_gorsel_yolu" class="form-control">
             </div>
             <div class="mb-3">
                 <label>Merhum Kabir Görseli</label>
