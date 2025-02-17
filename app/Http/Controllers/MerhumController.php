@@ -10,7 +10,7 @@ class MerhumController extends Controller
     // Tüm merhumları listeleyen fonksiyon
     public function index()
     {
-        $merhumlar = Merhum::orderBy('created_at', 'desc')->paginate(20);
+        $merhumlar = Merhum::orderBy('olum_tarihi', 'desc')->paginate(20);
         return view('merhumlarimiz', compact('merhumlar'));
     }
 

@@ -29,7 +29,7 @@
                         <img src="{{ asset('storage/' . ($merhum->merhum_gorsel_yolu ?? 'default.png')) }}" alt="Merhum Fotoğrafı">
                         <h3>{{ $merhum->ad_soyad }}</h3>
                         <p><strong>Vefat Tarihi:</strong> 
-                            {{ implode('-', array_reverse(explode('-', $merhum->olum_tarihi))) }}
+                            {{ $merhum->olum_tarihi }}
                         </p>
                     </a>
                 @endforeach
